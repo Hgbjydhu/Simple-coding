@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Professional E-commerce Website</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Professional E-commerce Website</h1>
+  </header>
+
+  <nav>
+    <!-- Navigation links go here -->
+  </nav>
+
+  <main>
+    <section class="product-list">
+      <!-- Display products dynamically using JavaScript -->
+    </section>
+    <aside class="cart">
+      <h2>Shopping Cart</h2>
+      <!-- Display items in the shopping cart dynamically using JavaScript -->
+      <button class="checkout">Checkout</button>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Your E-commerce Store. All rights reserved.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
+css
+Copy code
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.cart {
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.checkout {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.checkout:hover {
+  background-color: #555;
+}
+javascript
+Copy code
+// main.js
+
+// Sample product data
+const products = [
+  { id: 1, name: 'Product 1', price: 9.99 },
+  { id: 2, name: 'Product 2', price: 19.99 },
+  { id: 3, name: 'Product 3', price: 14.99 }
+];
+
+// Function to display products on the page
+function displayProducts() {
+  const productContainer = document.querySelector('.product-list');
+
+  products.forEach(product => {
+    const productElement = document.createElement('div');
+    productElement.classList.add('product');
+    productElement.innerHTML = `
+      <h3>${product.name}</h3>
+      <p>$${product.price}</p>
+      <button onclick="addToCart(${product.id})">Add to Cart</button>
+    `;
+    productContainer.appendChild(productElement);
+  });
+}
+
+// Function to add a product to the cart
+function addToCart(productId) {
+  const selectedProduct = products.find(product => product.id === productId);
+
+  // Add the selected product to the shopping cart
+  // ...
+
+  updateCart(); // Update the cart display
+}
+
+// Function to update the cart display
+function updateCart() {
+  const cart = document.querySelector('.cart');
+  cart.innerHTML = `
+    <h2>Shopping Cart</h2>
+    <!-- Display items in the shopping cart dynamically -->
+    <button class="checkout">Checkout</button>
+  `;
+}
+
+// Call the displayProducts function to initialize the product list
+displayProducts();
